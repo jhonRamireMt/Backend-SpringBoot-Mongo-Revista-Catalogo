@@ -17,6 +17,7 @@ public class CookwareController {
     private CookwareService cookwareService;
 
     @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
     public List<Cookware> getAllCookware(){
         return cookwareService.getAllProducts();
     }
@@ -34,6 +35,7 @@ public class CookwareController {
     }
 
     @DeleteMapping("/{reference}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCokkware(@PathVariable String reference){
         cookwareService.deleteProduct(reference);
     }

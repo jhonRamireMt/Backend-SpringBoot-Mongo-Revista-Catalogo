@@ -23,23 +23,25 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
 
     @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
     public List<User> getAll(){
         return userService.getAll();
     }
 
     @GetMapping("/emailexist/{email}")
-    @ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public boolean findByEmail(@PathVariable String email){
         return userService.findByEmail(email);
     }
 
     @GetMapping("/{email}/{password}")
-    //@ResponseStatus(HttpStatus.FOUND)
+    @ResponseStatus(HttpStatus.OK)
     public User finByEmailAndPassword(@PathVariable String email, @PathVariable String password){
         return userService.findByEmailAndPassword(email,password);
     }

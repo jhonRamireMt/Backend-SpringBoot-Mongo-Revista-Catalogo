@@ -41,10 +41,7 @@ public class UserService {
     }
 
     public boolean findByEmail(String email){
-        if(userRepository.findByEmail(email)){
-            return true;
-        }
-        return false;
+       return userRepository.findByEmail(email);
     }
 
     /* AUTENTICA USUARIO*/

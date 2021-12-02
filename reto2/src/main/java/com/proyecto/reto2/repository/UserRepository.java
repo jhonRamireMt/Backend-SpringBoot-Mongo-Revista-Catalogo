@@ -28,7 +28,10 @@ public class UserRepository {
     /* ENCONTRAR UN USUARIO POR EAMIL - BOOLEAN*/
     public boolean findByEmail(String email){
         Optional<User> findUser = mongoInterfaceRepository.findByEmail(email);
-        return findUser.isPresent();
+         if(findUser.isPresent()){
+             return true;
+         }
+         return false;
     }
 
     /* BUSCAR POR USUARIO Y PASSWORD PARA VERIFICAR AUTENTICACION*/
