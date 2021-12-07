@@ -60,7 +60,7 @@ public class UserService {
         Optional<User> validarIdUser = userRepository.findById(user.getId());
         if(validarIdUser.isPresent()){
             boolean validarEmail = userRepository.findByEmail(user.getEmail());
-            if(!validarEmail){
+            if(validarEmail){
                 return userRepository.updateUser(user);
             }else{
                 return null;
@@ -69,4 +69,14 @@ public class UserService {
         return null;
     }
 
+    public int sumarID(){
+        List<User> listaId = userRepository.getAll();
+        int id =0;
+        for(User user:listaId){
+            if(user.getId()>id){
+                id = user.getId();
+            }
+        }
+        return id+1;
+    }
 }

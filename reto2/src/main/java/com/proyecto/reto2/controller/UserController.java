@@ -19,7 +19,11 @@ public class UserController {
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user){
-       return userService.createUser(user);
+       return userService.createUser(new User(userService.sumarID(),
+               user.getIdentification(),user.getName(),
+               user.getAddress(),user.getCellPhone(),
+               user.getEmail(),user.getPassword(),
+               user.getZone(),user.getType()));
     }
 
     @DeleteMapping("/{id}")
