@@ -54,17 +54,13 @@ public class UserService {
         }
     }
 
-    /* ACTUALIZAR UN USUARIO, SE VALIDA QUE ID EXISTA PARA REALIZAR LA ACTUALIZACION
-    * SEGUNDO SE VALIDA QUE EL EMAIL ENTRANTE SEA DIFERENTE PUESTOA QUE SI ES IGUAL NO SE PUEDE CAMBIAR*/
+    /* ACTUALIZAR UN USUARIO, SE VALIDA EXISTENCIA DEL ID Y DEL CORREO
+    * EN CASO DE NO EXISTIR EL CORREO PERMITE EL CAMBIO*/
     public User updateUser(User user){
         Optional<User> validarIdUser = userRepository.findById(user.getId());
-        if(validarIdUser.isPresent()){
-            boolean validarEmail = userRepository.findByEmail(user.getEmail());
-            if(validarEmail){
-                return userRepository.updateUser(user);
-            }else{
-                return null;
-            }
+        boolean validarEmail = userRepository.findByEmail(user.getEmail());
+        if(validarIdUser.isPresent() && !validarEmail){
+            return userRepository.updateUser(user);
         }
         return null;
     }
